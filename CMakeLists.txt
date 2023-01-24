@@ -38,7 +38,7 @@ install(EXPORT LAStoolsTargets
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
     "LAStoolsConfigVersion.cmake"
-    VERSION ${geo_VERSION}
+    VERSION "v2.0.2"
     COMPATIBILITY AnyNewerVersion)
 
 install(FILES "LAStoolsConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/LAStoolsConfigVersion.cmake"
