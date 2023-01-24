@@ -22,24 +22,19 @@ endif()
 
 add_library(LAStools SHARED)
 
-install(TARGETS LAStools 
-    EXPORT LAStoolsTargets
-    FILE_SET HEADERS
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include)
+install(TARGETS LAStools
+        EXPORT LAStools
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib/static
+        PUBLIC_HEADER DESTINATION include/Lib)
 
-install(EXPORT LAStoolsTargets
-    FILE LAStoolsTargets.cmake
-    NAMESPACE LAStools::
-    DESTINATION lib/cmake/LAStools)
-
+install(EXPORT LAStools NAMESPACE LAStools:: DESTINATION lib/cmake/LAStools)
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-    "LAStoolsConfigVersion.cmake"
-    VERSION "v2.0.2"
-    COMPATIBILITY AnyNewerVersion)
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/LAStoolsConfig.cmake
+    INSTALL_DESTINATION lib/cmake/LAStools)
 
-install(FILES "LAStoolsConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/LAStoolsConfigVersion.cmake"
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/LAStoolsConfig.cmake
     DESTINATION lib/cmake/LAStools)
