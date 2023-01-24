@@ -19,3 +19,25 @@ add_subdirectory(src)
 if (EXISTS src_full)
 	add_subdirectory(src_full)
 endif()
+
+install(TARGETS LAStools 
+    EXPORT LAStoolsTargets
+    FILE_SET HEADERS
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin
+    INCLUDES DESTINATION include)
+
+install(EXPORT LAStoolsTargets
+    FILE LAStoolsTargets.cmake
+    NAMESPACE LAStools::
+    DESTINATION lib/cmake/LAStools)
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "LAStoolsConfigVersion.cmake"
+    VERSION ${geo_VERSION}
+    COMPATIBILITY AnyNewerVersion)
+
+install(FILES "LAStoolsConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/LAStoolsConfigVersion.cmake"
+    DESTINATION lib/cmake/LAStools)
