@@ -20,6 +20,8 @@ if (EXISTS src_full)
 	add_subdirectory(src_full)
 endif()
 
+add_library(LAStools SHARED)
+
 install(TARGETS LAStools 
     EXPORT LAStoolsTargets
     FILE_SET HEADERS
