@@ -20,7 +20,7 @@ if (EXISTS src_full)
 	add_subdirectory(src_full)
 endif()
 
-add_library(LAStools SHARED)
+add_library(LAStools SHARED ${LAS_SRC} ${LAZ_SRC})
 
 install(TARGETS LAStools
         EXPORT LAStools
