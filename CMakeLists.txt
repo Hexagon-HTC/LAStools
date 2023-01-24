@@ -30,10 +30,6 @@ install(TARGETS LAStools
         PUBLIC_HEADER DESTINATION include/Lib)
 
 install(EXPORT LAStools NAMESPACE LAStools:: DESTINATION lib/cmake/LAStools)
-include(CMakePackageConfigHelpers)
-configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/LAStoolsConfig.cmake
-    INSTALL_DESTINATION lib/cmake/LAStools)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/LAStoolsConfig.cmake
