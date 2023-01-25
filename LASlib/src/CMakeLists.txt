@@ -113,3 +113,17 @@ else()
 	install(EXPORT laslib-targets DESTINATION lib/cmake/LASlib)
 	install(FILES ${CMAKE_SOURCE_DIR}/LASlib/src/laslib-config.cmake DESTINATION lib/cmake/LASlib)
 endif(MSVC)
+
+
+install(TARGETS LASlib
+        EXPORT LASlib
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib/static
+        PUBLIC_HEADER DESTINATION include/Lib)
+
+install(EXPORT LASlib NAMESPACE LASlib:: DESTINATION lib/cmake/LASlib)
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/LASlibConfig.cmake
+    DESTINATION lib/cmake/LASlib)

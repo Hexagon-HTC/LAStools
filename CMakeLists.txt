@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 set(CMAKE_SUPPRESS_REGENERATION true)
-project("${PROJECT_NAME}")
+project("LAStools")
 
 if (!MSVC)
 	add_compile_options(-O3 -Wall -Wno-strict-aliasing)
@@ -19,18 +19,3 @@ add_subdirectory(src)
 if (EXISTS src_full)
 	add_subdirectory(src_full)
 endif()
-
-add_library(${PROJECT_NAME} SHARED ${PROJECT_NAME}/LASlib/src)
-
-install(TARGETS ${PROJECT_NAME}
-        EXPORT ${PROJECT_NAME}
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib/static
-        PUBLIC_HEADER DESTINATION include/Lib)
-
-install(EXPORT ${PROJECT_NAME} NAMESPACE ${PROJECT_NAME}:: DESTINATION lib/cmake/${PROJECT_NAME})
-
-install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
-    DESTINATION lib/cmake/${PROJECT_NAME})
