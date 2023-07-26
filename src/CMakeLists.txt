@@ -6,19 +6,23 @@ add_definitions(-DNDEBUG )
 include_directories(../LASzip/src)
 include_directories(../LASlib/inc)
 
-set(GEOPROJECTION_TARGETS
-	laszip
-	lasinfo
-	lasprecision
-	txt2las
-	las2las
-	lasmerge
-)
-set(STANDALONE_TARGETS
-	las2txt
-	lasdiff
-	lasindex
-)
+set(BUILD_ALL_TARGETS OFF CACHE BOOL "Enable building all targets.")
+if (BUILD_ALL_TARGETS)
+	set(GEOPROJECTION_TARGETS
+		laszip
+		lasinfo
+		lasprecision
+		txt2las
+		las2las
+		lasmerge
+	)
+	set(STANDALONE_TARGETS
+		las2txt
+		lasdiff
+		lasindex
+	)
+endif()
+
 set(ALL_TARGETS ${GEOPROJECTION_TARGETS} ${STANDALONE_TARGETS})
 
 foreach(TARGET ${GEOPROJECTION_TARGETS})
